@@ -1,0 +1,38 @@
+extends layout.pug
+
+block variables
+	- var activePage = 'matters'
+	- var activeGroup = 'none'
+
+block title
+	title Matters - Fatto
+
+block content
+	.app-title
+		div
+			h1
+				i.fa.fa-edit
+				|  Form Components
+			p Bootstrap default form components
+
+		ul.app-breadcrumb.breadcrumb
+			li.breadcrumb-item
+				i.fa.fa-home.fa-lg
+			li.breadcrumb-item
+				| Forms
+			li.breadcrumb-item
+				a(href="#") Form Components
+
+	.row
+		.col-md-12
+			.tile
+				.row
+					.col-lg-6
+						form
+							.form-group
+								label(for='exampleInputEmail1') Email address
+								input#exampleInputEmail1.form-control(type='email', aria-describedby='emailHelp', placeholder='Enter email')
+								small#emailHelp.form-text.text-muted We'll never share your email with anyone else.
+
+				.tile-footer
+					button.btn.btn-primary(type='submit') Submit

@@ -14,5 +14,10 @@ router.get('/auth', function(req, res, next) {
   res.redirect(parms.signInUrl);
 });
 
+router.get('/index', function(req, res, next) {
+  console.log("bbb");
+  res.render('index');
+});
+
 
 module.exports = router;
