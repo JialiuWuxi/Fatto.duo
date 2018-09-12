@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var authHelper = require('../helpers/auth');
+const axios = require('axios');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -21,9 +22,18 @@ router.get('/index', async function(req, res, next) {
   const userName = req.cookies.graph_user_name;
 
   if (accessToken && userName) {
+ 
+    let config = {headers: { Authorization: accessToken,}};
+
+    try {
+      let response = await axios.get(`${process.env.API_HOSTNAME}/api/v2/me`, config);
+      parms.lgUserRole = response.data.jobTitle;  
+    } catch (error) {
+      console.error(error);
+    }    
     parms.lgUserName = userName;
   } else {
-    parms.signInUrl = authHelper.getAuthUrl();
+    res.redirect('/');
   }
   res.render('index', parms);
 });
