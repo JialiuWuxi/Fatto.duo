@@ -14,9 +14,18 @@ router.get('/auth', function(req, res, next) {
   res.redirect(parms.signInUrl);
 });
 
-router.get('/index', function(req, res, next) {
-  console.log("bbb");
-  res.render('index');
+
+router.get('/index', async function(req, res, next) {
+  let parms = {};
+  const accessToken = await authHelper.getAccessToken(req.cookies, res);
+  const userName = req.cookies.graph_user_name;
+
+  if (accessToken && userName) {
+    parms.lgUserName = userName;
+  } else {
+    parms.signInUrl = authHelper.getAuthUrl();
+  }
+  res.render('index', parms);
 });
 
 

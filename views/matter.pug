@@ -12,8 +12,8 @@ block content
 		div
 			h1
 				i.fa.fa-edit
-				|  Form Components
-			p Bootstrap default form components
+				|  Matters
+			p Create new matter
 
 		ul.app-breadcrumb.breadcrumb
 			li.breadcrumb-item
@@ -30,9 +30,71 @@ block content
 					.col-lg-6
 						form
 							.form-group
-								label(for='exampleInputEmail1') Email address
-								input#exampleInputEmail1.form-control(type='email', aria-describedby='emailHelp', placeholder='Enter email')
-								small#emailHelp.form-text.text-muted We'll never share your email with anyone else.
+								label(for="categoryInput") Category
+								select#formSelect1.form-control(name="categorySel")
+									each val in caseCategoryOption
+										option(value=val.id)= val.fields.Title
+							.form-group
+								lable(for="matterCreatedTime") Create Date
+								input#formDatetimeInput1.form-control(name="createDate",type="date", value="2018-08-18")
+							.form-group
+								label(for="clientSelInput") Client
+								select#formSelect2.form-control(name="clientSel")
+									each val in clientList
+										option(value=val.fields.clientNumber)= val.fields.Title
+							.form-group
+								button.btn.btn-primary(type='button', data-toggle="modal", data-target="#exampleModalLong") Create New Client
+							.form-group
+								label(for="inputBranch") Branch
+								select#formSelect2.form-control(name="branchSel")
+									each val in caseBranchOption
+										option(value=val.fields.branchid)= val.fields.Title
+								label(for="inputDepartment") Department
+								select#formSelect3.form-control(name="departmentSel")
+									each val in caseDepartmentOption
+										option(value=val.fields.deparmentid)= val.fields.Branch + "-" + val.fields.Title
+
+					.col-lg-2.offset-lg-1
+						form
+							.form-group
+								label(for="inputLanguage") Language
+								select#formSelect4.form-control(name="languageSel")
+									option(value=1) English
+									Option(value=2) 中文
+
+							.animated-checkbox
+								label
+									input(type="checkbox")
+									span.label-text Foreign-related
+							.animated-checkbox
+								label
+									input(type="checkbox")
+									span.label-text Legal aid									
+													
+
+				.col-lg-6
+					.bs-component
+						.modal.fade#exampleModalLong(tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true")
+							.modal-dialog.modal-dialog-centered(role='document')
+								.modal-content
+									.modal-header
+										h5.modal-title Create New Client
+										button.close(type='button', data-dismiss='modal', aria-label='Close')
+											span(aria-hidden='true') ×
+									.modal-body
+										label(for="inputClientName") Client Name
+										input#newClientNameInput.form-control(name="clientNameInput", type="text")
+										label(for="inputClientAddress") Client Address
+										input#newClientAddressInput.form-control(name="clientAddressInput", type="text")
+										label(for="inputClientPhone") Client Phone
+										input#newClientPhoneInput.form-control(name="clientPhoneInput", type="text")
+										label(for="inputClientZIP") Client ZIP
+										input#newClientZIPInput.form-control(name="clientZIPInput", type="text")
+									.modal-footer
+										button.btn.btn-primary(type='button') Save changes
+										button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+
 
 				.tile-footer
 					button.btn.btn-primary(type='submit') Submit
+
