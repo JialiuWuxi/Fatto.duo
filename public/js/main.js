@@ -24,4 +24,25 @@
 	//Activate bootstrip tooltips
 	$("[data-toggle='tooltip']").tooltip();
 
+	//Save new ciletn information when user click "Change Save" button in matters page
+	$("#clientSaveButton").click(async function() {
+		let client = {};
+		client.Title = $('#newClientNameInput').val();
+		client.clientAddress = $('#newClientAddressInput').val();
+		client.clientPhone = $('#newClientPhoneInput').val();
+		client.clientZIP = $('#newClientZIPInput').val();
+		const data = client;
+	
+		$('#createNewClientModalLong').modal('hide')
+		await law.postListItems ( data, 1 );
+	
+		//hiden the modal and clean the input fields
+		$('#newClientNameInput').val('');
+		$('#newClientAddressInput').val('');
+		$('#newClientPhoneInput').val('');
+		$('#newClientZIPInput').val('')
+		//update client select dropdown 
+		law.getListItems (this, '#formSelect2', 3, function( a ) { return `<option value='${a.fields.clientNumber}'>${a.fields.Title}</option>` });	
+	});
+
 })();

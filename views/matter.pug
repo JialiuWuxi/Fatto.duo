@@ -42,7 +42,7 @@ block content
 								each val in clientList
 									option(value=val.fields.clientNumber)= val.fields.Title
 						.form-group
-							button.btn.btn-primary(type='button', data-toggle="modal", data-target="#exampleModalLong") Create New Client
+							button.btn.btn-primary(type='button', data-toggle="modal", data-target="#createNewClientModalLong") Create New Client
 						.form-group
 							label(for="inputBranch") Branch
 							select#formSelect2.form-control(name="branchSel")
@@ -78,7 +78,7 @@ block content
 																
 			.col-lg-6
 				.bs-component
-					.modal.fade#exampleModalLong(tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true")
+					.modal.fade#createNewClientModalLong(tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true")
 						.modal-dialog.modal-dialog-centered(role='document')
 							.modal-content
 								.modal-header
@@ -95,7 +95,7 @@ block content
 									label(for="inputClientZIP") Client ZIP
 									input#newClientZIPInput.form-control(name="clientZIPInput", type="text")
 								.modal-footer
-									button.btn.btn-primary(type='button') Save changes
+									button.btn.btn-primary#clientSaveButton(type='button') Save changes
 									button.btn.btn-secondary(type='button', data-dismiss='modal') Close
 
 

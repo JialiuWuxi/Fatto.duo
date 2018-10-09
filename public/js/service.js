@@ -1,7 +1,6 @@
 if (typeof law === 'undefined') window.law = {};
 
 window.law.getListItems = async function (element, elementNeedUpdate, recourseOption, callback) {
-    waitingDialog.show();
     const SelectValue = $(element).val();
     const accessToken = document.cookie.replace(/(?:(?:^|.*;\s*)graph_access_token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
     let config = { headers: { Authorization: accessToken, } }
@@ -21,10 +20,8 @@ window.law.getListItems = async function (element, elementNeedUpdate, recourseOp
             resultHtml += callback(a);
         };
         $(elementNeedUpdate).html(resultHtml);
-        waitingDialog.hide();
     } catch (error) {
         console.log(error);
-        waitingDialog.hide();
     }
 };
 
