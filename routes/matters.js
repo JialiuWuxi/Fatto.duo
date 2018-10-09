@@ -25,16 +25,14 @@ router.get('/', async function(req, res, next) {
       response = await axios.get(`${process.env.API_HOSTNAME}/api/v2/departments`, config);
       parms.caseDepartmentOption = response.data.value;
       response = await axios.get(`${process.env.API_HOSTNAME}/api/v2/clients`, config);
-      parms.clientList = response.data.value;    
+      parms.clientList = response.data.value;  
+      response = await axios.get(`${process.env.API_HOSTNAME}/api/v2/me`, config);
+      parms.lgUserRole = response.data.jobTitle;    
   
     } catch (error) {
       console.error(error);
     }
-
     res.render('matter', parms);
 });
-  
-
-  
   
 module.exports = router;

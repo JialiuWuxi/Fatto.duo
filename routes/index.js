@@ -4,8 +4,16 @@ var authHelper = require('../helpers/auth');
 const axios = require('axios');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('login');
+router.get('/', async function(req, res, next) {
+  let parms = {};
+  const accessToken = await authHelper.getAccessToken(req.cookies, res);
+  const userName = req.cookies.graph_user_name;
+  
+  if (accessToken && userName) {
+    res.redirect('/index');
+  }else{
+    res.render('login');
+  }
 });
 
 
