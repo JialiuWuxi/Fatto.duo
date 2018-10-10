@@ -40,7 +40,7 @@ block content
 							label(for="clientSelInput") Client
 							select#formSelect2.form-control(name="clientSel")
 								each val in clientList
-									option(value=val.fields.clientNumber)= val.fields.Title
+									option(value=val.fields.Title)= val.fields.Title
 						.form-group
 							button.btn.btn-primary(type='button', data-toggle="modal", data-target="#createNewClientModalLong") Create New Client
 						.form-group
@@ -57,8 +57,17 @@ block content
 							label(for="inputCaseName") Case Name
 							input#formCaseNameInput1.form-control(name="Title", type="text")
 						.card.bg-light.mb-3
-							.card-header Contact Information
+							.card-header Client Contact Information
 							.card-body
+								.list-group.list-group-flush#contactInformationBody
+									each val in clientContactList
+										.list-group-item=val.displayName 
+										div.dropdown
+											button.btn.btn-secondary.dropdown-toggle(type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") 选择角色
+											div.dropdown-menu(aria-labelledby="dropdownMenu2")
+												button.dropdown-item#clientSelAction-1(type="button") 主要联系人	
+												button.dropdown-item#clientSelAction-2(type="button") 次要联系人
+												button.dropdown-item#clientSelAction-3(type="button") 被告
 
 								
 					.col-lg-2.offset-lg-1

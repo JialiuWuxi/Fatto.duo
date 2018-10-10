@@ -1,6 +1,6 @@
 if (typeof law === 'undefined') window.law = {};
 
-window.law.getListItems = async function (element, elementNeedUpdate, recourseOption, callback) {
+window.law.getListItems = async function (element, recourseOption, callback) {
     const SelectValue = $(element).val();
     const accessToken = document.cookie.replace(/(?:(?:^|.*;\s*)graph_access_token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
     let config = { headers: { Authorization: accessToken, } }
@@ -11,15 +11,14 @@ window.law.getListItems = async function (element, elementNeedUpdate, recourseOp
             var response = await axios.get(`http://localhost:4000/api/v2/employees?departmentid='${SelectValue}'`, config);
         }else if( recourseOption === 3 ){
             var response = await axios.get(`http://localhost:4000/api/v2/clients`, config);
+        }else if( recourseOption === 4 ){
+            var response = await axios.get(`http://localhost:4000/api/v2/groups?search=${encodeURIComponent(SelectValue)}`, config);
         }else{
             throw 'Option error';
         }
 
-        let resultHtml = '';
-        for (let a of response.data.value) {
-            resultHtml += callback(a);
-        };
-        $(elementNeedUpdate).html(resultHtml);
+        callback(response.data.value);
+
     } catch (error) {
         console.log(error);
     }
