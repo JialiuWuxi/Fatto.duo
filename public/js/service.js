@@ -34,6 +34,8 @@ window.law.postListItems = async function (data, APIOption) {
             await axios.post(`http://localhost:4000/api/v2/clients`, data, config);
         }else if(APIOption === 2){
             await axios.post(`http://localhost:4000/api/v2/matters`, data, config);
+        }else if( APIOption === 3 ){
+            await axios.post(`http://localhost:4000/api/v2/groups`, data, config);
         }else{
             throw 'Option error'
         }

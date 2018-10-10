@@ -26,8 +26,12 @@ router.get('/', async function(req, res, next) {
       parms.caseDepartmentOption = response.data.value;
       response = await axios.get(`${process.env.API_HOSTNAME}/api/v2/clients`, config);
       parms.clientList = response.data.value;  
+      let clientTitle = response.data.value[0].fields.Title;
+      response = await axios.get(`${process.env.API_HOSTNAME}/api/v2/groups?$search=${encodeURIComponent(clientTitle)}`, config);
       response = await axios.get(`${process.env.API_HOSTNAME}/api/v2/me`, config);
       parms.lgUserRole = response.data.jobTitle;    
+      //response = await axios.get(`${process.env.API_HOSTNAME}/api/v2/clients/`);
+
   
     } catch (error) {
       console.error(error);
