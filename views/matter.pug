@@ -45,12 +45,12 @@ block content
 							button.btn.btn-primary(type='button', data-toggle="modal", data-target="#createNewClientModalLong") Create New Client
 						.form-group
 							label(for="inputBranch") Branch
-							select#formSelect2.form-control(name="branchSel")
+							select#formSelect3.form-control(name="branchSel")
 								each val in caseBranchOption
 									option(value=val.fields.branchid)= val.fields.Title
 						.form-group
 							label(for="inputDepartment") Department
-							select#formSelect3.form-control(name="departmentSel")
+							select#formSelect4.form-control(name="departmentSel")
 								each val in caseDepartmentOption
 									option(value=val.fields.deparmentid)= val.fields.Branch + "-" + val.fields.Title
 						.form-group
@@ -58,22 +58,22 @@ block content
 							input#formCaseNameInput1.form-control(name="Title", type="text")
 						.card.bg-light.mb-3
 							.card-header Client Contact Information
+							button.btn.btn-primary(type="button", data-toggle="modal", data-target="#createNewClientContactModalLong") 添加新联系人
 							.card-body
 								.list-group.list-group-flush#contactInformationBody
 									each val in clientContactList
-										.list-group-item=val.displayName 
-										div.dropdown
-											button.btn.btn-secondary.dropdown-toggle(type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") 选择角色
-											div.dropdown-menu(aria-labelledby="dropdownMenu2")
-												button.dropdown-item#clientSelAction-1(type="button") 主要联系人	
-												button.dropdown-item#clientSelAction-2(type="button") 次要联系人
-												button.dropdown-item#clientSelAction-3(type="button") 被告
+										.list-group-item=val.displayName
+											div.form-check
+												input.form-check-input(type="checkbox", value="", id="defaultCheck1")
+												label.form-check-label(for="defaultCheck1") 涉案成员
+
+
 
 								
 					.col-lg-2.offset-lg-1
 						.form-group
 							label(for="inputLanguage") Language
-							select#formSelect4.form-control(name="languageSel")
+							select#formSelect5.form-control(name="languageSel")
 								option(value=1) English
 								Option(value=2) 中文
 						.animated-checkbox
@@ -83,8 +83,7 @@ block content
 						.animated-checkbox
 							label
 								input(type="checkbox")
-								span.label-text Legal aid
-																
+								span.label-text Legal aid												
 			.col-lg-6
 				.bs-component
 					.modal.fade#createNewClientModalLong(tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true")
@@ -107,6 +106,26 @@ block content
 									button.btn.btn-primary#clientSaveButton(type='button') Save changes
 									button.btn.btn-secondary(type='button', data-dismiss='modal') Close
 
+			.col-lg-6
+				.bs-component
+					.modal.fade#createNewClientContactModalLong(tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true")
+						.modal-dialog.modal-dialog-centered(role='document')
+							.modal-content
+								.modal-header
+									h5.modal-title Create New Client Contact
+									button.close(type='button', data-dismiss='modal', aria-label='Close')
+										span(aria-hidden='true') ×
+								.modal-body
+									label(for="inputContactName") Contact Name
+									input#newContactNameInput.form-control(name="contactNameInput", type="text")
+									label(for="inputContactEmail") Contact Email
+									input#newContactEmailInput.form-control(name="contactEmailInput", type="text")
+									label(for="inputContactPhone") Contact Phone
+									input#newContactPhoneInput.form-control(name="contactPhoneInput", type="text")
+								.modal-footer
+									button.btn.btn-primary#contactSaveButton(type='button') Save changes
+									button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+			
 
 			.tile-footer
 				button.btn.btn-primary(type='submit') Submit
