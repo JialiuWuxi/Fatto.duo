@@ -22,7 +22,7 @@ router.get('/', async function(req, res, next) {
       parms.caseBranchOption = response.data.value;
       response = await axios.get(`${process.env.API_HOSTNAME}/api/v2/casetype`, config);
       parms.caseCategoryOption = response.data.value;    
-      response = await axios.get(`${process.env.API_HOSTNAME}/api/v2/departments`, config);
+      response = await axios.get(`${process.env.API_HOSTNAME}/api/v2/departments?branchid=1`, config);
       parms.caseDepartmentOption = response.data.value;
       response = await axios.get(`${process.env.API_HOSTNAME}/api/v2/clients`, config);
       parms.clientList = response.data.value;  
